@@ -65,6 +65,10 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
+" Read the shell output to a new buffer
+" :R ls -l
+command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -101,6 +105,9 @@ set hid
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
+
+" Prevent vim automaticall insert the comment leading character 
+set formatoptions-=cro
 
 " Ignore case when searching
 set ignorecase
@@ -211,33 +218,37 @@ map j gj
 map k gk
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
+"map <space> /
+"map <c-space> ?
 
 " Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+"map <silent> <leader><cr> :noh<cr>
+map <silent> <leader><space> :noh<cr>
 
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+" Close current window
+map <leader>wc <C-W>c
+" Close other windows
+map <leader>wo <C-W>o
+" Smart way to move cursor between windows
+map <C-j> <C-W><C-W>
+map <C-k> <C-W><C-P>
 
 " Close the current buffer
-map <leader>bd :Bclose<cr>:tabclose<cr>gT
-
+map <leader>bc :Bclose<cr>:tabclose<cr>gT
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
-
-map <leader>l :bnext<cr>
-map <leader>h :bprevious<cr>
+" New buffer
+map <leader>bn :new<cr>
+" Change buffer
+map <C-m> :bprevious<cr>
+map <C-<> :bnext<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+map <C-u> :tabprevious<cr>
+map <C-i> :tabnext<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -260,12 +271,12 @@ catch
 endtry
 
 " Return to last edit position when opening files (You want this!)
-" autocmd BufReadPost *
-"      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-"      \   exe "normal! g`\"" |
-"      \ endif
+autocmd BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 " Remember info about open buffers on close
-" set viminfo^=%
+set viminfo^=%
 
 
 """"""""""""""""""""""""""""""
@@ -282,19 +293,22 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
-map 0 ^
+nmap 0 ^
+vmap 0 ^
+nmap <BS> g_
+vmap <BS> g_   
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nmap <A-j> mz:m+<cr>`z
+nmap <A-k> mz:m-2<cr>`z
+vmap <A-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <A-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
+  nmap ∆ <A-j>
+  nmap ˚ <A-k>
+  vmap ∆ <A-j>
+  vmap ˚ <A-k>
 endif
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
@@ -305,39 +319,12 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
+autocmd BufWrite *.js :call DeleteTrailingWS()
+autocmd BufWrite *.hs :call DeleteTrailingWS()
+autocmd BufWrite *.html :call DeleteTrailingWS()
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ag searching and cope displaying
-"    requires ag.vim - it's much better than vimgrep/grep
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When you press gv you Ag after the selected text
-vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
-
-" Open Ag and put the cursor in the right position
-map <leader>g :Ag 
-
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with Ag, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pressing ,ss will toggle and untoggle spell checking
@@ -354,18 +341,16 @@ map <leader>s? z=
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+"noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scribble
-map <leader>q :e ~/buffer<cr>
+map <leader>qq :wqa!<cr>
 
 " Quickly open a markdown buffer for scribble
-map <leader>x :e ~/buffer.md<cr>
+"map <leader>x :e ~/buffer.md<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -432,3 +417,38 @@ endfunction
 if has("autocmd")
    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+" Read command output to a new tab
+function! TabMessage(cmd)
+  redir => message
+  silent execute a:cmd
+  redir END
+  if empty(message)
+    echoerr "no output"
+  else
+    " use "new" instead of "tabnew" below if you prefer split windows instead of tabs
+    "tabnew
+    new
+    setlocal buftype=nofile bufhidden=wipe noswapfile nobuflisted nomodified
+    silent put=message
+  endif
+endfunction
+command! -nargs=+ -complete=command Rm call TabMessage(<q-args>)
+
+" Delete empty buffers
+" http://stackoverflow.com/a/6561076
+function! DeleteEmptyBuffers()
+    let [i, n; empty] = [1, bufnr('$')]
+    while i <= n
+        if bufexists(i) && bufname(i) == ''
+            call add(empty, i)
+        endif
+        let i += 1
+    endwhile
+    if len(empty) > 0
+        " If you would like to delete empty buffers completely, including unloaded ones
+        " (be careful) replacing "bdelete" with "bwipeout"
+        exe 'bdelete!' join(empty)
+    endif
+endfunction
+command! DeleteNoNameBuffers call DeleteEmptyBuffers()

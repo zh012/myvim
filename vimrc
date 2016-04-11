@@ -10,22 +10,23 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-"Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'scrooloose/nerdtree'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'rking/ag.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'rstacruz/sparkup'
+
+" aesthetic
+Plugin 'itchyny/lightline.vim'
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+
+" python
+Plugin 'nvie/vim-flake8'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -41,4 +42,11 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
 source ~/.vim/vimrcs/basic.vim
+source ~/.vim/vimrcs/plugins.vim
+"source ~/.vim/vimrcs/ipython.vim
+
+set mouse=a
+set clipboard=unnamed
+set showcmd

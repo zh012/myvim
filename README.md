@@ -14,3 +14,7 @@
     brew update
     brew install vim --with-python3 
 
+
+### Install Ag for search
+
+    brew install the_silver_searcher
