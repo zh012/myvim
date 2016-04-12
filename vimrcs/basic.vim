@@ -1,12 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer: 
+" Maintainer:
 "       Amir Salihefendic
 "       http://amix.dk - amix@amix.dk
 "
-" Version: 
+" Version:
 "       5.0 - 29/05/12 15:43:36
 "
-" Blog_post: 
+" Blog_post:
 "       http://amix.dk/blog/post/19691#The-ultimate-Vim-configuration-on-Github
 "
 " Awesome_version:
@@ -19,7 +19,7 @@
 " Syntax_highlighted:
 "       http://amix.dk/vim/vimrc.html
 "
-" Raw_version: 
+" Raw_version:
 "       http://amix.dk/vim/vimrc.txt
 "
 " Sections:
@@ -61,7 +61,7 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
@@ -77,7 +77,7 @@ command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=h
 set so=7
 
 " Avoid garbled characters in Chinese language windows OS
-let $LANG='en' 
+let $LANG='en'
 set langmenu=en
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
@@ -106,29 +106,29 @@ set hid
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-" Prevent vim automaticall insert the comment leading character 
+" Prevent vim automaticall insert the comment leading character
 set formatoptions-=cro
 
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
 set hlsearch
 
 " Makes search act like search in modern browsers
-set incsearch 
+set incsearch
 
 " Don't redraw while executing macros (good performance config)
-set lazyredraw 
+set lazyredraw
 
 " For regular expressions turn magic on
 set magic
 
 " Show matching brackets when text indicator is over them
-set showmatch 
+set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -141,12 +141,19 @@ set tm=500
 " Add a bit extra margin to the left
 set foldcolumn=1
 
+" Show “invisible” characters
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set list
 
+" Don’t add empty newlines at the end of files
+set binary
+set noeol
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable 
+syntax enable
 
 try
     colorscheme desert
@@ -189,8 +196,14 @@ set expandtab
 set smarttab
 
 " 1 tab == 4 spaces
+set tabstop=8
 set shiftwidth=4
-set tabstop=4
+set softtabstop=4
+
+" for files using 2 spaces
+autocmd Filetype html setlocal sts=2 sw=2 expandtab
+autocmd Filetype javascript setlocal sts=2 sw=2 expandtab
+autocmd Filetype yaml setlocal sts=2 sw=2 expandtab
 
 " Linebreak on 500 characters
 set lbr
@@ -217,12 +230,7 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 map j gj
 map k gk
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-"map <space> /
-"map <c-space> ?
-
 " Disable highlight when <leader><cr> is pressed
-"map <silent> <leader><cr> :noh<cr>
 map <silent> <leader><space> :noh<cr>
 
 " Close current window
@@ -230,8 +238,17 @@ map <leader>wc <C-W>c
 " Close other windows
 map <leader>wo <C-W>o
 " Smart way to move cursor between windows
-map <C-j> <C-W><C-W>
-map <C-k> <C-W><C-P>
+map <tab> <C-w><C-p>
+map <C-up> <C-w>k
+map <C-down> <C-w>j
+map <C-left> <C-w>h
+map <C-right> <C-w>l
+imap <C-up> <esc><C-w>k
+imap <C-down> <esc><C-w>j
+imap <C-left> <esc><C-w>h
+imap <C-right> <esc><C-w>l
+
+
 
 " Close the current buffer
 map <leader>bc :Bclose<cr>:tabclose<cr>gT
@@ -240,15 +257,19 @@ map <leader>ba :bufdo bd<cr>
 " New buffer
 map <leader>bn :new<cr>
 " Change buffer
-map <C-m> :bprevious<cr>
-map <C-<> :bnext<cr>
+map <F1> :bprevious<cr>
+imap <F1> <esc>:bprevious<cr>
+map <F2> :bnext<cr>
+imap <F2> <esc>:bnext<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <C-u> :tabprevious<cr>
-map <C-i> :tabnext<cr>
+map <F10> :tabprevious<cr>
+imap <F10> :tabprevious<cr>
+map <F11> :tabnext<cr>
+imap <F11> :tabnext<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -263,7 +284,7 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
   set stal=2
@@ -296,7 +317,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 nmap 0 ^
 vmap 0 ^
 nmap <BS> g_
-vmap <BS> g_   
+vmap <BS> g_
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <A-j> mz:m+<cr>`z
@@ -318,10 +339,10 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
 autocmd BufWrite *.js :call DeleteTrailingWS()
 autocmd BufWrite *.hs :call DeleteTrailingWS()
-autocmd BufWrite *.html :call DeleteTrailingWS()
+autocmd BufWrite *.vim :call DeleteTrailingWS()
+map <leader>dt :call DeleteTrailingWS()<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -360,7 +381,7 @@ function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
-endfunction 
+endfunction
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"

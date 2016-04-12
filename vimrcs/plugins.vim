@@ -1,8 +1,9 @@
 "------------------------------
 " NerdTree
 "------------------------------
-map † :NERDTreeToggle<CR>    
-
+map <F4> :NERDTreeToggle<CR>
+imap <F4> <esc>:NERDTreeToggle<CR>
+let NERDTreeMapToggleFilters='a'
 
 "------------------------------
 " NerdCommenter
@@ -36,8 +37,7 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " " or
 " " `s{char}{char}{label}`
 " " Need one more keystroke, but on average, it may be more comfortable.
-"nmap s <Plug>(easymotion-overwin-f2)
-nmap <space> <Plug>(easymotion-overwin-f2)
+nmap f <Plug>(easymotion-overwin-f2)
 "
 " " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
@@ -54,17 +54,16 @@ set sessionoptions-=buffers
 set sessionoptions-=options
 set sessionoptions-=help
 
-let g:session_directory = '~/.vim/sessions' 
+let g:session_directory = '~/.vim/sessions'
 let g:session_lock_enabled = 0
 let g:session_default_overwirte = 1
-let g:session_autoload = 'yes'
+let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 let g:session_autosave_periodic = 1
 "let g:session_default_to_last = 1
-:let g:session_menu = 0
-
-map <leader>xo :OpenSession<space>
-map <leader>xs :SaveSession<space>
+":let g:session_menu = 0
+:let g:session_command_aliases = 1
+map <leader>o :OpenSession<cr>
 
 
 "------------------------------
@@ -78,7 +77,7 @@ let g:ag_working_path_mode="r"
 vnoremap <silent> av :call visualselection('gv', '')<cr>
 
 " Open Ag and put the cursor in the right position
-map <leader>a :Ag 
+map <leader>a :Ag
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
@@ -99,3 +98,9 @@ map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
+
+"------------------------------
+" vim-flake8
+"------------------------------
+let g:flake8_show_quickfix=1
+let g:flake8_show_in_gutter=1

@@ -14,7 +14,19 @@
     brew update
     brew install vim --with-python3 
 
+Don't do this usually.
+
 
 ### Install Ag for search
 
     brew install the_silver_searcher
+
+
+### Disable the `Mission Control` keys in mac
+
+    System Preferences -> Mission Control -> Keyboard and Mouse Shortcuts
+    System Preferences -> Keyboard -> Shortcuts -> Mission Control -> Mission Control
+
+### Flip fn keys of F1 ~ F12 in mac
+
+    System Preferences -> Keyboard -> Use all F1,F2,etc. keys as standard function keys

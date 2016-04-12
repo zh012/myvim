@@ -50,3 +50,4 @@ source ~/.vim/vimrcs/plugins.vim
 set mouse=a
 set clipboard=unnamed
 set showcmd
+set nolist
