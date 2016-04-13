@@ -28,6 +28,10 @@ Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 " python
 Plugin 'nvie/vim-flake8'
 
+" slimes
+"Plugin 'jpalardy/vim-slime'
+Plugin 'epeli/slimux'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -45,9 +49,8 @@ filetype plugin indent on    " required
 
 source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/plugins.vim
-"source ~/.vim/vimrcs/ipython.vim
 
-set mouse=a
+"set mouse=a
 set clipboard=unnamed
 set showcmd
 set nolist

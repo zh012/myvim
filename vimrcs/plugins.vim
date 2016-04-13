@@ -1,4 +1,9 @@
 "------------------------------
+" ctrlp
+"------------------------------
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+
+"------------------------------
 " NerdTree
 "------------------------------
 map <F4> :NERDTreeToggle<CR>
@@ -38,6 +43,7 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " " `s{char}{char}{label}`
 " " Need one more keystroke, but on average, it may be more comfortable.
 nmap f <Plug>(easymotion-overwin-f2)
+vmap f <Plug>(easymotion-s2)
 "
 " " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
@@ -104,3 +110,22 @@ map <leader>p :cp<cr>
 "------------------------------
 let g:flake8_show_quickfix=1
 let g:flake8_show_in_gutter=1
+
+
+"------------------------------
+" slimux
+"------------------------------
+map <C-c><C-c> :SlimuxREPLSendLine<cr>
+imap <C-c><C-c> <esc>:SlimuxREPLSendLine<cr>
+vmap <C-c><C-c> :SlimuxREPLSendSelection<cr>
+map ss :SlimuxShellPrompt<cr><c-u>
+vmap ss :SlimuxShellPrompt<cr><c-u>
+
+" Need to send '%cpaste' before pasting, and '--' or Ctrl-D after
+function! SlimuxPre_python(target_pane)
+    call system("tmux send-keys -t " . a:target_pane . " %cpaste")
+    call system("tmux send-keys -t " . a:target_pane . " Enter")
+endfunction
+function! SlimuxPost_python(target_pane)
+    call system("tmux send-keys -t " . a:target_pane . " C-D")
+endfunction

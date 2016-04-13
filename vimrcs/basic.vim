@@ -230,6 +230,9 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 map j gj
 map k gk
 
+" Use G go to the last character
+map G G$
+
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><space> :noh<cr>
 
@@ -251,7 +254,7 @@ imap <C-right> <esc><C-w>l
 
 
 " Close the current buffer
-map <leader>bc :Bclose<cr>:tabclose<cr>gT
+map <leader>bc :Bclose<cr>
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
 " New buffer
@@ -267,9 +270,9 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <F10> :tabprevious<cr>
-imap <F10> :tabprevious<cr>
+imap <F10> <esc>:tabprevious<cr>
 map <F11> :tabnext<cr>
-imap <F11> :tabnext<cr>
+imap <F11> <esc>:tabnext<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -365,7 +368,7 @@ map <leader>s? z=
 "noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scribble
-map <leader>qq :wqa!<cr>
+map <leader>qq :DeleteNoNameBuffers<cr>:wqa!<cr>
 
 " Quickly open a markdown buffer for scribble
 "map <leader>x :e ~/buffer.md<cr>
@@ -469,7 +472,7 @@ function! DeleteEmptyBuffers()
     if len(empty) > 0
         " If you would like to delete empty buffers completely, including unloaded ones
         " (be careful) replacing "bdelete" with "bwipeout"
-        exe 'bdelete!' join(empty)
+        exe 'bwipeout!' join(empty)
     endif
 endfunction
 command! DeleteNoNameBuffers call DeleteEmptyBuffers()
