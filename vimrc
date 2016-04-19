@@ -24,6 +24,7 @@ Plugin 'rstacruz/sparkup'
 " aesthetic
 Plugin 'itchyny/lightline.vim'
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'altercation/vim-colors-solarized'
 
 " python
 Plugin 'nvie/vim-flake8'
@@ -50,7 +51,8 @@ filetype plugin indent on    " required
 source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/plugins.vim
 
-"set mouse=a
+set mouse=a
 set clipboard=unnamed
 set showcmd
 set nolist
+colorscheme solarized

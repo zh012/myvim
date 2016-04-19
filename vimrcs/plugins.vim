@@ -120,6 +120,8 @@ imap <C-c><C-c> <esc>:SlimuxREPLSendLine<cr>
 vmap <C-c><C-c> :SlimuxREPLSendSelection<cr>
 map ss :SlimuxShellPrompt<cr><c-u>
 vmap ss :SlimuxShellPrompt<cr><c-u>
+map sk :SlimuxSendKeysPrompt<cr>
+vmap sk :SlimuxSendKeysPrompt<cr>
 
 " Need to send '%cpaste' before pasting, and '--' or Ctrl-D after
 function! SlimuxPre_python(target_pane)
@@ -129,3 +131,9 @@ endfunction
 function! SlimuxPost_python(target_pane)
     call system("tmux send-keys -t " . a:target_pane . " C-D")
 endfunction
+
+
+"------------------------------
+" theme solarized
+"------------------------------
+let g:solarized_termcolors=256

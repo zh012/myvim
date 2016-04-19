@@ -74,7 +74,8 @@ command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=h
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+"set so=7
+set scrolloff=3
 
 " Avoid garbled characters in Chinese language windows OS
 let $LANG='en'
@@ -148,7 +149,9 @@ set list
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
-"
+
+" Disable the bg color for matching brackets
+hi MatchParen guibg=NONE guifg=Magenta gui=bold ctermbg=None ctermfg=Magenta
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -242,16 +245,22 @@ map <leader>wc <C-W>c
 map <leader>wo <C-W>o
 " Smart way to move cursor between windows
 map <tab> <C-w><C-p>
-map <C-up> <C-w>k
-map <C-down> <C-w>j
-map <C-left> <C-w>h
-map <C-right> <C-w>l
-imap <C-up> <esc><C-w>k
-imap <C-down> <esc><C-w>j
-imap <C-left> <esc><C-w>h
-imap <C-right> <esc><C-w>l
-
-
+"map <C-up> <C-w>k
+"map <C-down> <C-w>j
+"map <C-left> <C-w>h
+"map <C-right> <C-w>l
+"imap <C-up> <esc><C-w>k
+"imap <C-down> <esc><C-w>j
+"imap <C-left> <esc><C-w>h
+"imap <C-right> <esc><C-w>l
+map <C-k> <C-w>k
+map <C-j> <C-w>j
+map <C-h> <C-w>h
+map <C-l> <C-w>l
+imap <C-k> <esc><C-w>k
+imap <C-j> <esc><C-w>j
+imap <C-h> <esc><C-w>h
+imap <C-l> <esc><C-w>l
 
 " Close the current buffer
 map <leader>bc :Bclose<cr>
