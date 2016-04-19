@@ -325,11 +325,11 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remap VIM 0 to first non-blank character
-nmap 0 ^
-vmap 0 ^
-nmap <BS> g_
-vmap <BS> g_
+" Moving to the tails of the line
+noremap _ -
+noremap _ -
+map - g$
+map = $
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <A-j> mz:m+<cr>`z
