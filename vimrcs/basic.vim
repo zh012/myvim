@@ -151,7 +151,9 @@ set binary
 set noeol
 
 " Disable the bg color for matching brackets
-hi MatchParen guibg=NONE guifg=Magenta gui=bold ctermbg=None ctermfg=Magenta
+hi MatchParen ctermbg=None ctermfg=Magenta guibg=NONE guifg=Magenta gui=bold
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
