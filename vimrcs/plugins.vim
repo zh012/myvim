@@ -80,13 +80,13 @@ map <leader>o :OpenSession<cr>
 let g:ag_working_path_mode="r"
 
 " when you press gv you ag after the selected text
-vnoremap <silent> av :call visualselection('gv', '')<cr>
+vnoremap <silent> av :call VisualSelection('gv', '')<cr>
 
 " Open Ag and put the cursor in the right position
 map <leader>a :Ag<space>
 
 " When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
+vnoremap <silent> <leader>r :call VisualSelection('replace', '')<cr>
 
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
@@ -137,3 +137,9 @@ endfunction
 " theme solarized
 "------------------------------
 let g:solarized_termcolors=256
+
+
+"------------------------------
+" sparkup for javascript
+"------------------------------
+autocmd FileType javascript runtime! ftplugin/html/sparkup.vim

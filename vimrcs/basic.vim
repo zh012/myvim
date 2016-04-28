@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Maintainer:
 "       Amir Salihefendic
 "       http://amix.dk - amix@amix.dk
@@ -246,7 +246,8 @@ map <leader>wc <C-W>c
 " Close other windows
 map <leader>wo <C-W>o
 " Smart way to move cursor between windows
-map <tab> <C-w><C-p>
+"map <tab> <C-w><C-p>
+map <tab> <C-w><C-w>
 "map <C-up> <C-w>k
 "map <C-down> <C-w>j
 "map <C-left> <C-w>h
