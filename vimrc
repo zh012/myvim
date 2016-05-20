@@ -20,6 +20,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'rstacruz/sparkup'
+Plugin 'zh012/bufexplorer'
 
 " aesthetic
 Plugin 'itchyny/lightline.vim'
@@ -29,8 +30,10 @@ Plugin 'altercation/vim-colors-solarized'
 " python
 Plugin 'nvie/vim-flake8'
 
+" Vue
+Plugin 'posva/vim-vue'
+
 " slimes
-"Plugin 'jpalardy/vim-slime'
 Plugin 'epeli/slimux'
 
 " All of your Plugins must be added before the following line
@@ -52,7 +55,7 @@ source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/plugins.vim
 
 set mouse=a
-set clipboard=unnamed
+"set clipboard=unnamed
 set showcmd
 set nolist
 colorscheme solarized

@@ -6,9 +6,15 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|sv
 "------------------------------
 " NerdTree
 "------------------------------
-map <F4> :NERDTreeToggle<CR>
-imap <F4> <esc>:NERDTreeToggle<CR>
+map <silent> <F4> :NERDTreeToggle<CR>
+imap <silent> <F4> <esc>:NERDTreeToggle<CR>
+let NERDTreeChDirMode=2
 let NERDTreeMapToggleFilters='a'
+let NERDTreeWinPos='right'
+let NERDTreeMinimalUI=0
+let NERDTreeAutoDeleteBuffer=1
+let NERDTreeIgnore=['^__pycache__$[[dir]]', '\~$']
+
 
 "------------------------------
 " NerdCommenter
@@ -44,6 +50,7 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " " Need one more keystroke, but on average, it may be more comfortable.
 nmap f <Plug>(easymotion-overwin-f2)
 vmap f <Plug>(easymotion-s2)
+
 "
 " " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
@@ -115,6 +122,8 @@ let g:flake8_show_in_gutter=1
 "------------------------------
 " slimux
 "------------------------------
+let g:slimux_select_from_current_windo=1
+
 map <C-c><C-c> :SlimuxREPLSendLine<cr>
 imap <C-c><C-c> <esc>:SlimuxREPLSendLine<cr>
 vmap <C-c><C-c> :SlimuxREPLSendSelection<cr>
@@ -143,3 +152,12 @@ let g:solarized_termcolors=256
 " sparkup for javascript
 "------------------------------
 autocmd FileType javascript runtime! ftplugin/html/sparkup.vim
+autocmd FileType vue  runtime! ftplugin/html/sparkup.vim
+
+
+
+"------------------------------
+" bufexplorer
+"------------------------------
+map <silent> <F3> :ToggleBufExplorer<CR>
+imap <silent> <F3> <esc>:ToggleBufExplorer<CR>

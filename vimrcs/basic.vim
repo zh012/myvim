@@ -201,14 +201,12 @@ set expandtab
 set smarttab
 
 " 1 tab == 4 spaces
-set tabstop=8
+set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
 " for files using 2 spaces
-autocmd Filetype html setlocal sts=2 sw=2 expandtab
-autocmd Filetype javascript setlocal sts=2 sw=2 expandtab
-autocmd Filetype yaml setlocal sts=2 sw=2 expandtab
+autocmd Filetype html,javascript,yaml,vue setlocal ts=2 sts=2 sw=2 expandtab
 
 " Linebreak on 500 characters
 set lbr
@@ -271,11 +269,6 @@ map <leader>bc :Bclose<cr>
 map <leader>ba :bufdo bd<cr>
 " New buffer
 map <leader>bn :new<cr>
-" Change buffer
-map <F1> :bprevious<cr>
-imap <F1> <esc>:bprevious<cr>
-map <F2> :bnext<cr>
-imap <F2> <esc>:bnext<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
