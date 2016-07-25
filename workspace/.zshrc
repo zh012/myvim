@@ -46,7 +46,7 @@ ZSH_THEME="amuse"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aws brew history pip sublime web-search adb)
+plugins=(git aws brew history pip sublime web-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,7 +100,6 @@ eval "$(boot2docker shellinit 2> /dev/null)"
 
 export HOMEBREW_GITHUB_API_TOKEN=b5a65fe58307f54c8aaa83612c3e378fe0ab7e23
 export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
-source ~/.alias
 
 # init pyenv
 #eval "$(pyenv init -)"
