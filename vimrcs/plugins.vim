@@ -21,6 +21,12 @@ let NERDTreeIgnore=['^__pycache__$[[dir]]', '\~$']
 "------------------------------
 nmap <leader>c <Plug>NERDCommenterToggle
 xmap <leader>c <Plug>NERDCommenterToggle
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
 
 " clear uesless mapping
 map <Plug>UnmapNERDCommenterAlignBoth <Plug>NERDCommenterAlignBoth

@@ -30,6 +30,9 @@ Plugin 'altercation/vim-colors-solarized'
 " python
 Plugin 'nvie/vim-flake8'
 
+" Scala
+Plugin 'derekwyatt/vim-scala'
+
 " Vue
 Plugin 'posva/vim-vue'
 

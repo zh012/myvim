@@ -86,27 +86,15 @@ export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 source /usr/local/bin/virtualenvwrapper.sh
 
 # tmux setting for virtualenv
-if [ -n "$VIRTUAL_ENV" ]; then
-    source "$VIRTUAL_ENV/bin/activate"
-    if [ -f $HOME/.virtualenvspostactivate ]; then
-        source $HOME/.virtualenvs/postactivate
-    fi
-fi
-
-export GH_OAUTH_TOKEN=8f0c687e11f5a1a34db2d5e9726e11b6fc06cf7d
+#if [ -n "$VIRTUAL_ENV" ]; then
+#    source "$VIRTUAL_ENV/bin/activate"
+#    if [ -f $HOME/.virtualenvspostactivate ]; then
+#        source $HOME/.virtualenvs/postactivate
+#    fi
+#fi
 
 # init docker env
-eval "$(boot2docker shellinit 2> /dev/null)"
+#eval "$(boot2docker shellinit 2> /dev/null)"
 
-export HOMEBREW_GITHUB_API_TOKEN=b5a65fe58307f54c8aaa83612c3e378fe0ab7e23
-export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
-
-# init pyenv
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-
-# React Native
-export ANDROID_HOME=/usr/local/opt/android-sdk
-
-# jpm
-export PATH=$PATH:$HOME/Library/PackageManager/bin/
+# android path
+#export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
