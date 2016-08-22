@@ -168,3 +168,38 @@ autocmd FileType vue  runtime! ftplugin/html/sparkup.vim
 map <silent> <F3> :ToggleBufExplorer<CR>
 imap <silent> <F3> <esc>:ToggleBufExplorer<CR>
 let g:bufExplorerFindActive=0
+
+
+"------------------------------
+" syntastic
+"------------------------------
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
+
+"-----------------------------
+" ensime
+"-----------------------------
+
+nnoremap <leader>t :EnTypeCheck<cr>
+" autocmd BufWritePost *.scala silent :EnTypeCheck
+autocmd FileType scala nnoremap <leader>ed :EnDeclaration<cr>
+autocmd FileType scala nnoremap <leader>eb :EnDocBrowse<cr>
+
+" resolve some conflict
+autocmd FileType scala nunmap f
+autocmd FileType scala vunmap f
+autocmd FileType scala nmap <leader><leader> <Plug>(easymotion-overwin-f2)
+autocmd FileType scala vmap <leader><leader> <Plug>(easymotion-s2)
+
+
+"-----------------------------
+" rainbow
+"-----------------------------
+let g:rainbow_active = 1

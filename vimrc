@@ -20,24 +20,27 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'rstacruz/sparkup'
+Plugin 'epeli/slimux'
 Plugin 'zh012/bufexplorer'
 
 " aesthetic
 Plugin 'itchyny/lightline.vim'
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'luochen1990/rainbow'
+
+" development
+Plugin 'scrooloose/syntastic'
 
 " python
 Plugin 'nvie/vim-flake8'
 
 " Scala
 Plugin 'derekwyatt/vim-scala'
+Plugin 'ensime/ensime-vim'
 
 " Vue
 Plugin 'posva/vim-vue'
-
-" slimes
-Plugin 'epeli/slimux'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
