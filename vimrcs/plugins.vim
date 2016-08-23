@@ -187,16 +187,19 @@ set statusline+=%*
 " ensime
 "-----------------------------
 
-nnoremap <leader>t :EnTypeCheck<cr>
 " autocmd BufWritePost *.scala silent :EnTypeCheck
-autocmd FileType scala nnoremap <leader>ed :EnDeclaration<cr>
+autocmd FileType scala nnoremap <leader>t :EnTypeCheck<cr>
+autocmd FileType scala nnoremap <leader>d :EnDeclarationSplit<cr>
+autocmd FileType scala nnoremap <leader>i :EnInspectType<cr>
 autocmd FileType scala nnoremap <leader>eb :EnDocBrowse<cr>
+autocmd FileType scala nnoremap <leader>ed :EnDeclaration<cr>
+autocmd FileType scala nnoremap <leader>ep :EnShowPackage<cr>
 
 " resolve some conflict
-autocmd FileType scala nunmap f
-autocmd FileType scala vunmap f
-autocmd FileType scala nmap <leader><leader> <Plug>(easymotion-overwin-f2)
-autocmd FileType scala vmap <leader><leader> <Plug>(easymotion-s2)
+autocmd FileType scala silent! nunmap f
+autocmd FileType scala silent! vunmap f
+autocmd FileType scala nmap <buffer> <leader><leader> <Plug>(easymotion-overwin-f2)
+autocmd FileType scala vmap <buffer> <leader><leader> <Plug>(easymotion-s2)
 
 
 "-----------------------------
