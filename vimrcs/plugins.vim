@@ -167,6 +167,8 @@ autocmd FileType vue  runtime! ftplugin/html/sparkup.vim
 "------------------------------
 map <silent> <F3> :ToggleBufExplorer<CR>
 imap <silent> <F3> <esc>:ToggleBufExplorer<CR>
+map <silent> <F2> :BufExplorerHorizontalSplit<CR>
+imap <silent> <F2> <esc>:BufExplorerHorizontalSplit<CR>
 let g:bufExplorerFindActive=0
 
 

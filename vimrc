@@ -64,4 +64,4 @@ set mouse=a
 "set clipboard=unnamed
 set showcmd
 set nolist
-colorscheme solarized
+colorscheme default
