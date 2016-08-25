@@ -14,6 +14,7 @@ let NERDTreeWinPos='right'
 let NERDTreeMinimalUI=0
 let NERDTreeAutoDeleteBuffer=1
 let NERDTreeIgnore=['^__pycache__$[[dir]]', '\~$']
+let NERDTreeWinSize=40
 
 
 "------------------------------
@@ -114,8 +115,8 @@ vnoremap <silent> <leader>r :call VisualSelection('replace', '')<cr>
 "
 map <leader>cc :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+map <leader>cn :cn<cr>
+map <leader>cp :cp<cr>
 
 
 "------------------------------
@@ -165,10 +166,12 @@ autocmd FileType vue  runtime! ftplugin/html/sparkup.vim
 "------------------------------
 " bufexplorer
 "------------------------------
-map <silent> <F3> :ToggleBufExplorer<CR>
-imap <silent> <F3> <esc>:ToggleBufExplorer<CR>
+map <silent> <F1> :ToggleBufExplorer<CR>
+imap <silent> <F1> <esc>:ToggleBufExplorer<CR>
 map <silent> <F2> :BufExplorerHorizontalSplit<CR>
 imap <silent> <F2> <esc>:BufExplorerHorizontalSplit<CR>
+map <silent> <F3> :BufExplorerVerticalSplit<CR>
+imap <silent> <F3> <esc>:BufExplorerVerticalSplit<CR>
 let g:bufExplorerFindActive=0
 
 

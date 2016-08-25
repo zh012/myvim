@@ -264,11 +264,12 @@ imap <C-h> <esc><C-w>h
 imap <C-l> <esc><C-w>l
 
 " Close the current buffer
-map <leader>bc :Bclose<cr>
+map <leader>bc :Bclose<cr><C-w>c
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
 " New buffer
-map <leader>bn :new<cr>
+map <leader>n :new<cr>
+map <leader>v :vnew<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
