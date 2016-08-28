@@ -46,10 +46,12 @@ run command `:EnInstall` in vim
 
 run command `ensimeConfig` in sbt console
 
-### YouCompleteMe requests to use MacVim instead of console vim, and will need build
-something locally
+### YouCompleteMe 
+** even YCM ask for installing MacVim instead of console vim,
+it seems working fine with console vim though
+
 ```
-brew cask install macvim
+brew install macvim  # Do NOT use cask install
 brew install cmake
 ```
 
