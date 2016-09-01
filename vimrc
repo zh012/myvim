@@ -20,7 +20,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'rstacruz/sparkup'
 Plugin 'epeli/slimux'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'zh012/YouCompleteMe'
 Plugin 'zh012/bufexplorer'
 
 " aesthetic
@@ -37,7 +37,8 @@ Plugin 'nvie/vim-flake8'
 
 " Scala
 Plugin 'derekwyatt/vim-scala'
-Plugin 'ensime/ensime-vim'
+" Plugin 'ensime/ensime-vim'
+Plugin 'zh012/ensime-vim'
 
 " Vue
 Plugin 'posva/vim-vue'

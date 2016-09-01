@@ -151,8 +151,7 @@ set binary
 set noeol
 
 " Disable the bg color for matching brackets
-hi MatchParen ctermbg=None ctermfg=Magenta guibg=NONE guifg=Magenta gui=bold
-
+hi MatchParen cterm=bold ctermbg=None ctermfg=White guibg=NONE guifg=White  gui=bold
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -275,10 +274,10 @@ map <leader>v :vnew<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <F10> :tabprevious<cr>
-imap <F10> <esc>:tabprevious<cr>
-map <F11> :tabnext<cr>
-imap <F11> <esc>:tabnext<cr>
+map <F11> :tabprevious<cr>
+imap <F11> <esc>:tabprevious<cr>
+map <F12> :tabnext<cr>
+imap <F12> <esc>:tabnext<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1

@@ -55,8 +55,11 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " " or
 " " `s{char}{char}{label}`
 " " Need one more keystroke, but on average, it may be more comfortable.
+" nmap f <Plug>(easymotion-overwin-f2)
+" vmap f <Plug>(easymotion-s2)
 nmap f <Plug>(easymotion-overwin-f2)
 vmap f <Plug>(easymotion-s2)
+
 
 "
 " " Turn on case insensitive feature
@@ -199,13 +202,6 @@ autocmd FileType scala nnoremap <leader>i :EnInspectType<cr>
 autocmd FileType scala nnoremap <leader>eb :EnDocBrowse<cr>
 autocmd FileType scala nnoremap <leader>ed :EnDeclaration<cr>
 autocmd FileType scala nnoremap <leader>ep :EnShowPackage<cr>
-
-" resolve some conflict
-autocmd FileType scala silent! nunmap f
-autocmd FileType scala silent! vunmap f
-autocmd FileType scala nmap <buffer> <leader><leader> <Plug>(easymotion-overwin-f2)
-autocmd FileType scala vmap <buffer> <leader><leader> <Plug>(easymotion-s2)
-
 
 "-----------------------------
 " rainbow
