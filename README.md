@@ -30,3 +30,14 @@ Don't do this usually.
 ### Flip fn keys of F1 ~ F12 in mac
 
     System Preferences -> Keyboard -> Use all F1,F2,etc. keys as standard function keys
+
+
+### profile a vim command
+
+```
+:profile start profile.log
+:profile func *
+:profile file *
+" At this point do slow actions
+:profile pause
+```

@@ -30,7 +30,9 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'luochen1990/rainbow'
 
 " development
-Plugin 'scrooloose/syntastic'
+
+" save is slow for scala with syntastic enabled
+" Plugin 'scrooloose/syntastic'
 
 " python
 Plugin 'nvie/vim-flake8'
@@ -42,6 +44,9 @@ Plugin 'zh012/ensime-vim'
 
 " Vue
 Plugin 'posva/vim-vue'
+
+" elm
+Plugin 'ElmCast/elm-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
