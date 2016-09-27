@@ -142,4 +142,4 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 # nvm
 # brew install nvm
 # nvm install node
-sourc e$(brew --prefix nvm)/nvm.sh
+source $(brew --prefix nvm)/nvm.sh
