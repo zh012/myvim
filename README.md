@@ -12,7 +12,7 @@
 ### Install vim with python 3 support
 
     brew update
-    brew install vim --with-python3 
+    brew install vim --with-python3
 
 Don't do this usually.
 

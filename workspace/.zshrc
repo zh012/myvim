@@ -46,7 +46,7 @@ ZSH_THEME="amuse"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aws brew history pip sublime web-search)
+plugins=(git sbt tmux brew brew-cask history pip web-search aws sublime nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -78,6 +78,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+
+export JAVA_HOME="`/usr/libexec/java_home`"
 
 # settings for virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
@@ -98,3 +101,45 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 # android path
 #export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
+# export PATH=$PATH:$HOME/bin
+
+# spark related
+export SPARK_HOME=~/workspace/spark/current
+
+alias spark=$SPARK_HOME/bin/spark-shell
+pyspark() {
+    (
+        if [[ $(readlink $SPARK_HOME) == "spark-2"* ]]; then
+            # export PYSPARK_DRIVER_PYTHON=ipython
+            export PYSPARK_DRIVER_PYTHON=jupyter
+            export PYSPARK_DRIVER_PYTHON_OPTS="notebook --NotebookApp.port=9999"
+            unset IPYTHON
+        else
+            export IPYTHON=1
+            unset PYSPARK_DRIVER_PYTHON
+        fi
+        workon pyspark
+        cd ~/workspace/spark/notebook
+        $SPARK_HOME/bin/pyspark
+    )
+}
+
+# workaround for tmux issue with slimux
+# https://github.com/epeli/slimux/issues/61
+export EVENT_NOKQUEUE=1
+export EVENT_NOPOLL=1
+
+# use MacVim instead of vim
+alias vim='mvim -v'
+alias https='http --default-scheme=https'
+
+# react native
+export ANT_HOME=/usr/local/opt/ant
+export MAVEN_HOME=/usr/local/opt/maven
+export GRADLE_HOME=/usr/local/opt/gradle
+export ANDROID_HOME=/usr/local/opt/android-sdk
+
+# nvm
+# brew install nvm
+# nvm install node
+sourc e$(brew --prefix nvm)/nvm.sh

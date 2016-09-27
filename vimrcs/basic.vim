@@ -346,10 +346,13 @@ func! DeleteTrailingWS()
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.js :call DeleteTrailingWS()
-autocmd BufWrite *.hs :call DeleteTrailingWS()
-autocmd BufWrite *.vim :call DeleteTrailingWS()
+" autocmd BufWrite *.py :call DeleteTrailingWS()
+" autocmd BufWrite *.js :call DeleteTrailingWS()
+" autocmd BufWrite *.hs :call DeleteTrailingWS()
+" autocmd BufWrite *.vim :call DeleteTrailingWS()
+" autocmd BufWrite *.scala :call DeleteTrailingWS()
+autocmd BufWritePre * :call DeleteTrailingWS()
+autocmd BufWritePre * :retab
 map <leader>dt :call DeleteTrailingWS()<cr>
 
 
