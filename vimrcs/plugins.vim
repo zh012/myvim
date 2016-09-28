@@ -207,3 +207,12 @@ autocmd FileType scala nnoremap <leader>ep :EnShowPackage<cr>
 " rainbow
 "-----------------------------
 let g:rainbow_active = 1
+
+"-----------------------------
+" purescript
+"-----------------------------
+let g:purescript_indent_if = 3
+let g:purescript_indent_case = 5
+let g:purescript_indent_let = 4
+let g:purescript_indent_do = 3
+let g:purescript_indent_type = 5

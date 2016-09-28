@@ -138,6 +138,10 @@ export ANT_HOME=/usr/local/opt/ant
 export MAVEN_HOME=/usr/local/opt/maven
 export GRADLE_HOME=/usr/local/opt/gradle
 export ANDROID_HOME=/usr/local/opt/android-sdk
+# export ANDROID_NDK=/usr/local/opt/android-ndk
+# brew tap homebrew/versions
+# brew install homebrew/versions/android-ndk-r10e
+export ANDROID_NDK=/usr/local/Cellar/android-ndk-r10e/r10e
 
 # nvm
 # brew install nvm
