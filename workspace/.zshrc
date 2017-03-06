@@ -46,7 +46,7 @@ ZSH_THEME="amuse"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sbt tmux brew brew-cask history pip web-search aws sublime nvm)
+plugins=(git sbt docker tmux brew brew-cask history pip web-search aws sublime nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -147,3 +147,15 @@ export ANDROID_NDK=/usr/local/Cellar/android-ndk-r10e/r10e
 # brew install nvm
 # nvm install node
 source $(brew --prefix nvm)/nvm.sh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+
+function omz() {
+    cd ~/.oh-my-zsh
+    git stash clear
+    git stash
+    git pull
+    git stash apply
+    cd -
+}
