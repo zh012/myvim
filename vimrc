@@ -14,13 +14,13 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'rking/ag.vim'
-Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'terryma/vim-multiple-cursors'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'rstacruz/sparkup'
 Plugin 'epeli/slimux'
-Plugin 'zh012/YouCompleteMe'
+" Plugin 'zh012/YouCompleteMe'
 Plugin 'zh012/bufexplorer'
 
 " aesthetic
@@ -35,18 +35,10 @@ Plugin 'luochen1990/rainbow'
 " Plugin 'scrooloose/syntastic'
 
 " python
-Plugin 'nvie/vim-flake8'
-
-" Scala
-Plugin 'derekwyatt/vim-scala'
-" Plugin 'ensime/ensime-vim'
-Plugin 'zh012/ensime-vim'
+" Plugin 'nvie/vim-flake8'
 
 " Vue
 Plugin 'posva/vim-vue'
-
-" elm
-" Plugin 'ElmCast/elm-vim'
 
 " purescript
 Plugin 'raichoo/purescript-vim'
@@ -54,6 +46,9 @@ Plugin 'raichoo/purescript-vim'
 " react
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+
+" ruby
+Plugin 'vim-ruby/vim-ruby'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

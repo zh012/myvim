@@ -205,7 +205,7 @@ set shiftwidth=4
 set softtabstop=4
 
 " for files using 2 spaces
-autocmd Filetype html,javascript,yaml,vue,purescript setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype html,javascript,yaml,vue,purescript,ruby setlocal ts=2 sts=2 sw=2 expandtab
 
 " Linebreak on 500 characters
 set lbr
@@ -347,6 +347,7 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 " autocmd BufWrite *.py :call DeleteTrailingWS()
+" autocmd BufWrite *.rb :call DeleteTrailingWS()
 " autocmd BufWrite *.js :call DeleteTrailingWS()
 " autocmd BufWrite *.hs :call DeleteTrailingWS()
 " autocmd BufWrite *.vim :call DeleteTrailingWS()
