@@ -21,7 +21,10 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'rstacruz/sparkup'
 Plugin 'epeli/slimux'
 " Plugin 'zh012/YouCompleteMe'
+" jump among buffers
 Plugin 'zh012/bufexplorer'
+" fuzzy file search
+Plugin 'Yggdroot/LeaderF'
 
 " aesthetic
 Plugin 'itchyny/lightline.vim'
