@@ -97,11 +97,11 @@ map <leader>o :OpenSession<cr>
 " You can configure ag.vim to always start searching from your project root instead of the cwd
 let g:ag_working_path_mode="r"
 
-" when you press gv you ag after the selected text
-vnoremap <silent> av :call VisualSelection('gv', '')<cr>
-
 " Open Ag and put the cursor in the right position
 map <leader>a :Ag<space>
+
+" when you press gv you ag after the selected text
+vnoremap <silent> <leader>a :call VisualSelection('gv', '')<cr>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<cr>
@@ -217,3 +217,13 @@ let g:purescript_indent_case = 5
 let g:purescript_indent_let = 4
 let g:purescript_indent_do = 3
 let g:purescript_indent_type = 5
+
+"----------------------------
+" LeaderF
+"----------------------------
+let g:Lf_WildIgnore = {
+        \ 'dir': ['.svn','.git','.hg', 'node_modules', '__pycache__', '.idea'],
+        \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+        \}
+let g:Lf_DefaultMode = 'FullPath'
+let g:Lf_WindowHeight = 0.3

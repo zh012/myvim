@@ -383,7 +383,12 @@ map <leader>qq :DeleteNoNameBuffers<cr>:wqa!<cr>
 "map <leader>x :e ~/buffer.md<cr>
 
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+" map <leader>pp :setlocal paste!<cr>
+
+" Copy to clipboard
+map <leader>y "+y
+" Past from clipboard
+map <leader>p "+p
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
