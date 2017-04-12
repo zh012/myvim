@@ -99,9 +99,11 @@ let g:ag_working_path_mode="r"
 
 " Open Ag and put the cursor in the right position
 map <leader>a :Ag<space>
+map <leader>A :Ag!<space>
 
 " when you press gv you ag after the selected text
 vnoremap <silent> <leader>a :call VisualSelection('gv', '')<cr>
+vnoremap <silent> <leader>A :call VisualSelection('gv!', '')<cr>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<cr>
