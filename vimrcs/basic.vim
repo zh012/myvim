@@ -205,7 +205,8 @@ set shiftwidth=4
 set softtabstop=4
 
 " for files using 2 spaces
-autocmd Filetype html,javascript,yaml,vue,purescript,ruby setlocal ts=2 sts=2 sw=2 expandtab
+autocmd BufRead,BufNewFile *.tf set filetype=hcl syntax=ruby
+autocmd Filetype html,javascript,yaml,vue,purescript,ruby,hcl setlocal ts=2 sts=2 sw=2 expandtab
 
 " Linebreak on 500 characters
 set lbr
@@ -324,7 +325,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " Moving to the tails of the line
 noremap _ -
 noremap _ -
-map - g$
+map - ^
 map = $
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
@@ -410,9 +411,9 @@ function! VisualSelection(direction, extra_filter) range
     if a:direction == 'b'
         execute "normal ?" . l:pattern . "^M"
     elseif a:direction == 'gv'
-        call CmdLine("Ag \"" . l:pattern . "\" " )
+        call CmdLine("Ag \'" . l:pattern . "\' " )
     elseif a:direction == 'gv!'
-        call CmdLine("Ag! \"" . l:pattern . "\" " )
+        call CmdLine("Ag! \'" . l:pattern . "\' " )
     elseif a:direction == 'replace'
         call CmdLine("%s" . '/'. l:pattern . '/')
     elseif a:direction == 'f'
