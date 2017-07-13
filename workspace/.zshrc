@@ -1,15 +1,21 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# https://github.com/robbyrussell/oh-my-zsh/wiki/themes
-ZSH_THEME="amuse"
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/jerry.zhang/.oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="myamuse"
+#ZSH_THEME="simple"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -46,7 +52,7 @@ ZSH_THEME="amuse"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sbt docker tmux brew brew-cask history pip web-search aws sublime nvm)
+plugins=(git docker history aws rbenv brew web-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -68,7 +74,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -78,84 +84,55 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-
-export JAVA_HOME="`/usr/libexec/java_home`"
 
 # settings for virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/projects
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-source /usr/local/bin/virtualenvwrapper.sh
+#export WORKON_HOME=$HOME/.virtualenvs
+#export PROJECT_HOME=$HOME/projects
+#export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+#source /usr/local/bin/virtualenvwrapper.sh
 
-# tmux setting for virtualenv
-#if [ -n "$VIRTUAL_ENV" ]; then
-#    source "$VIRTUAL_ENV/bin/activate"
-#    if [ -f $HOME/.virtualenvspostactivate ]; then
-#        source $HOME/.virtualenvs/postactivate
-#    fi
-#fi
+# anaconda
+PATH_WITHOUT_CONDA=$PATH
+PATH_WITH_CONDA="/Users/jerry.zhang/anaconda3/bin:$PATH"
+export PATH=$PATH_WITH_CONDA
 
-# init docker env
-#eval "$(boot2docker shellinit 2> /dev/null)"
-
-# android path
-#export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
-# export PATH=$PATH:$HOME/bin
-
-# spark related
-export SPARK_HOME=~/workspace/spark/current
-
-alias spark=$SPARK_HOME/bin/spark-shell
-pyspark() {
-    (
-        if [[ $(readlink $SPARK_HOME) == "spark-2"* ]]; then
-            # export PYSPARK_DRIVER_PYTHON=ipython
-            export PYSPARK_DRIVER_PYTHON=jupyter
-            export PYSPARK_DRIVER_PYTHON_OPTS="notebook --NotebookApp.port=9999"
-            unset IPYTHON
-        else
-            export IPYTHON=1
-            unset PYSPARK_DRIVER_PYTHON
-        fi
-        workon pyspark
-        cd ~/workspace/spark/notebook
-        $SPARK_HOME/bin/pyspark
-    )
+function condaenv() {
+    if [[ "$1" == "off" ]]; then
+        export PATH=$PATH_WITHOUT_CONDA
+    else
+        export PATH=$PATH_WITH_CONDA
+    fi
 }
 
-# workaround for tmux issue with slimux
-# https://github.com/epeli/slimux/issues/61
-export EVENT_NOKQUEUE=1
-export EVENT_NOPOLL=1
-
-# use MacVim instead of vim
-alias vim='mvim -v'
-alias https='http --default-scheme=https'
-
-# react native
-export ANT_HOME=/usr/local/opt/ant
-export MAVEN_HOME=/usr/local/opt/maven
-export GRADLE_HOME=/usr/local/opt/gradle
-export ANDROID_HOME=/usr/local/opt/android-sdk
-# export ANDROID_NDK=/usr/local/opt/android-ndk
-# brew tap homebrew/versions
-# brew install homebrew/versions/android-ndk-r10e
-export ANDROID_NDK=/usr/local/Cellar/android-ndk-r10e/r10e
-
-# nvm
-# brew install nvm
-# nvm install node
-source $(brew --prefix nvm)/nvm.sh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-
-function omz() {
-    cd ~/.oh-my-zsh
-    git stash clear
-    git stash
-    git pull
-    git stash apply
-    cd -
+# switch kubernetes cluster
+function kubenv() {
+    if [[ -f ~/.kube-$1 ]]; then
+        cd
+        rm .kube || true
+        ln -nsf ./.kube-$1 .kube
+        cd -
+    else
+        echo "env $1 does not exist"
+    fi
 }
+
+function sshconfig() {
+    if [[ -f ~/.ssh/config.$1 ]]; then
+        cd ~/.ssh
+        ln -nsf ./config.$1 config
+        cd -
+    else
+        echo "config $1 does not exist"
+    fi
+}
+
+alias zep="ssh -L 2535:10.141.17.80:2535 jzhang@10.141.17.80"
+export PATH="/usr/local/sbin:$PATH"
+
+# hero mysql client
+alias mylocal="mysql --defaults-file=~/.my.hero-local.cnf -D johnny5_development"
+alias mystg="mysql --defaults-file=~/.my.hero-stg.cnf -D hero_stg"
+alias myint="mysql --defaults-file=~/.my.hero-int.cnf -D hero_int"
+
+# android
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
