@@ -52,7 +52,7 @@ ZSH_THEME="myamuse"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker history aws rbenv brew web-search)
+plugins=(git docker history aws brew web-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,7 +94,7 @@ source $ZSH/oh-my-zsh.sh
 # anaconda
 PATH_WITHOUT_CONDA=$PATH
 PATH_WITH_CONDA="/Users/jerry.zhang/anaconda3/bin:$PATH"
-export PATH=$PATH_WITH_CONDA
+export PATH=$PATH_WITHOUT_CONDA
 
 function condaenv() {
     if [[ "$1" == "off" ]]; then
@@ -126,13 +126,19 @@ function sshconfig() {
     fi
 }
 
-alias zep="ssh -L 2535:10.141.17.80:2535 jzhang@10.141.17.80"
 export PATH="/usr/local/sbin:$PATH"
 
 # hero mysql client
-alias mylocal="mysql --defaults-file=~/.my.hero-local.cnf -D johnny5_development"
-alias mystg="mysql --defaults-file=~/.my.hero-stg.cnf -D hero_stg"
-alias myint="mysql --defaults-file=~/.my.hero-int.cnf -D hero_int"
+alias mylocal="mysql --defaults-file=$HOME/.my.hero-local.cnf -D johnny5_development"
+alias mystg="mysql --defaults-file=$HOME/.my.hero-stg.cnf -D hero_stg"
+alias myint="mysql --defaults-file=$HOME/.my.hero-int.cnf -D hero_int"
+alias myprac="mysql --defaults-file=$HOME/.my.hero-int.cnf -D hero_practice"
+alias myprod="mysql --defaults-file=$HOME/.my.hero-prod.cnf -D hero_prod"
 
 # android
 export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+
+eval "$(rbenv init -)"
+alias nb="docker run -d --name notebook -p 8888:8888 -v $HOME/side/notebook:/home/jovyan jupyter/datascience-notebook && sleep 3 && docker logs notebook"
+
+alias mitm="docker run --rm --name mitm -it -v $HOME/.mitmproxy:/home/mitmproxy/.mitmproxy -p 7070:8080 mitmproxy/mitmproxy mitmproxy -s /home/mitmproxy/.mitmproxy/adaptor.py"
