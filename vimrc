@@ -76,3 +76,5 @@ set mouse=a
 set showcmd
 set nolist
 colorscheme default
+
+hi MatchParen cterm=none ctermbg=darkgray ctermfg=black
