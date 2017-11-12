@@ -269,6 +269,8 @@ map <leader>bc :Bclose<cr><C-w>c
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
 " New buffer
+set splitright
+set splitbelow
 map <leader>n :new<cr>
 map <leader>v :vnew<cr>
 
