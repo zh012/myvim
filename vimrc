@@ -39,6 +39,7 @@ Plugin 'luochen1990/rainbow'
 
 " python
 " Plugin 'nvie/vim-flake8'
+Plugin 'Vimjas/vim-python-pep8-indent'
 
 " Vue
 Plugin 'posva/vim-vue'
@@ -52,6 +53,9 @@ Plugin 'mxw/vim-jsx'
 
 " ruby
 Plugin 'vim-ruby/vim-ruby'
+
+" golang
+Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

@@ -13,7 +13,7 @@ let NERDTreeMapToggleFilters='a'
 let NERDTreeWinPos='right'
 let NERDTreeMinimalUI=0
 let NERDTreeAutoDeleteBuffer=1
-let NERDTreeIgnore=['^__pycache__$[[dir]]', '\~$']
+let NERDTreeIgnore=['^__pycache__$[[dir]]', '\~$', '\.py[co]$']
 let NERDTreeWinSize=40
 
 

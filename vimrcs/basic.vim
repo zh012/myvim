@@ -207,7 +207,7 @@ set softtabstop=4
 
 " for files using 2 spaces
 autocmd BufRead,BufNewFile *.tf set filetype=hcl syntax=ruby
-autocmd Filetype html,javascript,yaml,vue,purescript,ruby,hcl,haskell setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype html,htmldjango,javascript,yaml,vue,purescript,ruby,hcl,haskell setlocal ts=2 sts=2 sw=2 expandtab
 
 " Linebreak on 500 characters
 set lbr

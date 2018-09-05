@@ -52,7 +52,7 @@ ZSH_THEME="myamuse"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker history aws brew web-search)
+plugins=(git docker history aws brew web-search docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,7 +106,7 @@ function condaenv() {
 
 # switch kubernetes cluster
 function kubenv() {
-    if [[ -f ~/.kube-$1 ]]; then
+    if [[ -d ~/.kube-$1 ]]; then
         cd
         rm .kube || true
         ln -nsf ./.kube-$1 .kube
@@ -126,7 +126,24 @@ function sshconfig() {
     fi
 }
 
+# switch aws credentials
+function awsenv() {
+    if [[ -f ~/.aws/credentials.$1 ]]; then
+        cd ~/.aws
+        rm credentials || true
+        ln -nsf ./credentials.$1 credentials
+        cd -
+    else
+        echo "env $1 does not exist"
+    fi
+}
+
 export PATH="/usr/local/sbin:$PATH"
+
+export GOPATH="/Users/jerry.zhang/go"
+export GOROOT="/usr/local/opt/go/libexec"
+export GOBIN=$(go env GOPATH)/bin
+export PATH=$PATH:$(go env GOPATH)/bin
 
 # hero mysql client
 alias mylocal="mysql --defaults-file=$HOME/.my.hero-local.cnf -D johnny5_development"
@@ -139,6 +156,56 @@ alias myprod="mysql --defaults-file=$HOME/.my.hero-prod.cnf -D hero_prod"
 export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 
 eval "$(rbenv init -)"
-alias nb="docker run -d --name notebook -p 8888:8888 -v $HOME/side/notebook:/home/jovyan jupyter/datascience-notebook && sleep 3 && docker logs notebook"
 
-alias mitm="docker run --rm --name mitm -it -v $HOME/.mitmproxy:/home/mitmproxy/.mitmproxy -p 7070:8080 mitmproxy/mitmproxy mitmproxy -s /home/mitmproxy/.mitmproxy/adaptor.py"
+function nb() {
+    NOTEBOOK=${1:-datascience}
+    PORT=${2:-8888}
+    docker run -d --name ${NOTEBOOK} -p ${PORT}:8888 -v ${HOME}/side/${NOTEBOOK}:/home/jovyan jupyter/${NOTEBOOK}-notebook
+    sleep 3
+    watch -g docker logs ${NOTEBOOK}
+}
+
+function nbkill() {
+    NOTEBOOK=${1:-datascience}
+    docker rm -f ${NOTEBOOK}
+}
+
+alias ju="docker run -d --name hero_jupyter -p 3088:8888 -v $HOME/projects/jupyter:/home/jovyan jupyter/datascience-notebook && sleep 3 && docker logs hero_jupyter"
+
+alias mitm="docker run --rm --name mitm -it -v $HOME/.mitmproxy:/home/mitmproxy/.mitmproxy -p 7070:8080 mitmproxy/mitmproxy mitmproxy -s /home/mitmproxy/.mitmproxy/adaptor.py --set stream_websockets=true"
+
+alias side="condaenv on;source activate side"
+alias shop="condaenv on;source activate shop"
+alias py27="condaenv on;source activate py2.7"
+alias py3="condaenv on;source activate py3"
+
+function co() {
+    condaenv on; source activate $1
+}
+
+###-tns-completion-start-###
+if [ -f /Users/jerry.zhang/.tnsrc ]; then
+    source /Users/jerry.zhang/.tnsrc
+fi
+###-tns-completion-end-###
+#
+
+export HERO_SSH_USER=jerry
+
+# for rails
+alias mypg='docker run -it --rm --link postgres postgres:10 psql -h postgres -U postgres'
+alias b='bundle exec '
+alias br='bundle exec rails '
+alias bt='bundle exec rspec '
+export CONFIGURE_ARGS="with-pg-config=/usr/local/Cellar/libpq/10.3/bin/pg_config"
+
+alias kc=kubectl
+alias k8sdev="kops export kubecfg --name dev.baymax.jp --state s3://k8s-state.baymax.pay"
+alias k8sstg="kops export kubecfg --name stg.paypay-corp.co.jp --state s3://k8s-state.baymax.pay"
+
+function b64() {
+    echo -n $1 | base64
+}
+
+unalias g
+
