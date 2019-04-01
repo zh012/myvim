@@ -209,3 +209,5 @@ function b64() {
 
 unalias g
 
+alias lr='luarocks --lua-dir=/usr/local/opt/lua@5.1'
+export PATH="$HOME/.cargo/bin:$PATH"
